@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventos>
+    <evento>
+        <id>1</id>
+        <titulo>Workshop XML</titulo>
+        <descricao>Entendendo XML no desenvolvimento</descricao>
+        <categoria>Tecnologia</categoria>
+        <dataHora>2025-05-20T10:00:00</dataHora>
+        <local>Sala Virtual</local>
+        <organizadores>
+            <organizador>
+                <nome>João Silva</nome>
+                <contato>joao.silva@example.com</contato>
+            </organizador>
+            <organizador>
+                <nome>Maria Oliveira</nome>
+                <contato>maria.oliveira@example.com</contato>
+            </organizador>
+        </organizadores>
+        <participantes>
+            <participante>
+                <nome>Lucas Costa</nome>
+                <email>lucas.costa@example.com</email>
+            </participante>
+            <participante>
+                <nome>Ana Santos</nome>
+                <email>ana.santos@example.com</email>
+            </participante>
+        </participantes>
+    </evento>
+    <evento>
+        <id>2</id>
+        <titulo>Palestra Integrada</titulo>
+        <descricao>Como integrar APIs com XML</descricao>
+        <categoria>Educação</categoria>
+        <dataHora>2025-06-15T15:00:00</dataHora>
+        <local>Auditório A</local>
+        <organizadores>
+            <organizador>
+                <nome>Carlos Pereira</nome>
+                <contato>carlos.pereira@example.com</contato>
+            </organizador>
+        </organizadores>
+        <participantes>
+            <participante>
+                <nome>Beatriz Almeida</nome>
+                <email>beatriz.almeida@example.com</email>
+            </participante>
+        </participantes>
+    </evento>
+</eventos>
