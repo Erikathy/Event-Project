@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Eventos</title>
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="/temple.css">
+</head>
+
+<body>
+    <header>
+        <h1>🎉 Gerenciamento de Eventos</h1>
+    </header>
+
+    <main>
+        <!-- Seção de Bem-vindo -->
+        <section class="bem-vindo">
+            <h2>Bem-vindo(a) ao Gerenciamento de Eventos!</h2>
+            <p>Organize e acompanhe todos os seus eventos de forma fácil e prática.</p>
+            <a class="botao acesso" href="#cadastro">Começar</a>
+        </section>
+
+        <!-- Seção de Cadastro -->
+        <section id="cadastro" class="cadastro">
+            <h2>Cadastro Básico</h2>
+            <form th:action="@{/cadastro}" method="post" onsubmit="return validarCadastro()">
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                </div>
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+                <div>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+                </div>
+                <button type="submit" class="cadastrar">Cadastrar</button>
+            </form>
+        </section>
+
+        <!-- Seção de Eventos -->
+        <section class="eventos">
+            <h2>Eventos Agendados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Data e Hora</th>
+                        <th>Local</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="evento : ${eventos}">
+                        <td th:text="${evento.titulo}">Título do Evento</td>
+                        <td th:text="${evento.descricao}">Descrição do Evento</td>
+                        <td th:text="${evento.dataHora}">Data e Hora</td>
+                        <td th:text="${evento.local}">Local do Evento</td>
+                        <td>
+                            <a class="botao editar" th:href="@{/eventos/editar/{id}(id=${evento.id})}">Editar</a>
+                            <a class="botao deletar" th:href="@{/eventos/deletar/{id}(id=${evento.id})}" onclick="confirmarExclusao(event)">Deletar</a>
+                            <button class="botao detalhes" data-evento='{"titulo":"[[${evento.titulo}]]","descricao":"[[${evento.descricao}]]","dataHora":"[[${evento.dataHora}]]","local":"[[${evento.local}]]"}'>Detalhes</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Formulário de Eventos -->
+        <section class="formulario">
+            <h2 th:if="${evento.id == null}">Adicionar Novo Evento</h2>
+            <h2 th:if="${evento.id != null}">Editar Evento</h2>
+            <form th:action="@{/eventos}" th:object="${evento}" method="post">
+                <div>
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" th:field="*{titulo}" placeholder="Título do evento" required>
+                </div>
+                <div>
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" th:field="*{descricao}" placeholder="Descrição do evento" required></textarea>
+                </div>
+                <div>
+                    <label for="dataHora">Data e Hora:</label>
+                    <input type="datetime-local" id="dataHora" th:field="*{dataHora}" required>
+                </div>
+                <div>
+                    <label for="local">Local:</label>
+                    <input type="text" id="local" th:field="*{local}" placeholder="Local do evento" required>
+                </div>
+                <button type="submit" class="salvar">Salvar</button>
+            </form>
+        </section>
+
+        <!-- Seção de Análise de Dados (R e Ruby) -->
+        <section class="analise-dados">
+            <h2>Análise Estatística de Eventos</h2>
+            <p id="analiseR">Os dados analisados pelo script R aparecerão aqui...</p>
+        </section>
+
+        <section class="dados-node-ruby">
+            <h2>Informações Adicionais</h2>
+            <div id="dadosNode">Carregando dados do Node.js...</div>
+            <div id="dadosRuby">Carregando dados do Ruby...</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Gerenciamento de Eventos</p>
+    </footer>
+
+    <!-- Link para os arquivos adicionais -->
+    <script src="/js/det.js"></script>
+    <!-- JavaScript original -->
+    <script src="/static/ts/script.js" type="module"></script>
+    <!-- TypeScript -->
+    <script src="/nodejs/eventos.js"></script>
+    <!-- Node.js -->
+    <script src="/ruby/eventos.rb.js"></script>
+    <!-- Ruby -->
+    <script src="/r/analiseR.js"></script>
+    <!-- R -->
+</body>
+
+</html>
